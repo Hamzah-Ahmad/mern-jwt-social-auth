@@ -9,7 +9,7 @@ const FbBtn = props => {
     const name = response.name;
     const userID = response.userID;
     const body = { email, name, userID };
-    console.log(response);
+    //console.log(response);
     //axios.post("/api/auth/facebook", body).then(res => console.log(res));
     props.fbLogin(body);
   };

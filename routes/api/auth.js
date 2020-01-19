@@ -33,7 +33,7 @@ router.post("/", (req, res) => {
           res.json({
             token,
             user: {
-              _id: user.id,
+              _id: user._id,
               name: user.name,
               email: user.email
             }
@@ -51,13 +51,13 @@ router.post("/facebook", (req, res) => {
   const { name, email, userID } = req.body;
   //console.log(userID);
   User.findOne({ fbId: userID }).then(user => {
-    console.log("Not found");
+    // console.log("Not found");
     // console.log(fbId);
-    console.log(userID);
+    // console.log(userID);
     if (!user) {
       const newUser = new User({
-        name,
-        email,
+        name: name,
+        //email: email,
         fbId: userID
       });
       newUser.save().then(user => {
