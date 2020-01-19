@@ -5,7 +5,7 @@ import { googleLogin } from "../../actions/authActions";
 
 const GoogleBtn = props => {
   const responseGoogle = response => {
-    console.log(response.profileObj);
+    //console.log(response.profileObj);
     const email = response.profileObj.email;
     const name = response.profileObj.name;
     const userID = response.profileObj.googleId;
