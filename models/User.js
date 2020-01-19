@@ -14,6 +14,9 @@ const UserSchema = new mongoose.Schema({
   fbId: {
     type: String
   },
+  googleId: {
+    type: String
+  },
   register_date: {
     type: Date,
     default: Date.now

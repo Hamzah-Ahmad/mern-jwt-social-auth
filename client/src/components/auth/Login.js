@@ -14,6 +14,7 @@ import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 import { Link } from "react-router-dom";
 import FbBtn from "./FbBtn";
+import GoogleBtn from "./GoogleBtn";
 
 class Login extends Component {
   state = {
@@ -115,6 +116,7 @@ class Login extends Component {
           <Link to="/register">Not a member?</Link>
           <hr />
           <FbBtn />
+          <GoogleBtn />
         </Container>
       </div>
     );

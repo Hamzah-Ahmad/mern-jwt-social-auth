@@ -13,6 +13,8 @@ import PropTypes from "prop-types";
 import { register } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 import { Link } from "react-router-dom";
+import GoogleBtn from "./GoogleBtn";
+import FbBtn from "./FbBtn";
 
 class Register extends Component {
   state = {
@@ -124,6 +126,8 @@ class Register extends Component {
             </FormGroup>
           </Form>
           <Link to="/login">Already a member?</Link>
+          <FbBtn />
+          <GoogleBtn />
         </Container>
       </div>
     );
