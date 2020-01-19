@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Alert, Container } from "reactstrap";
 
 const Landingpage = props => {
   const { isAuthenticated } = props.auth;
-  useEffect(() => console.log(props), []);
   return (
     <div>
       <Container>

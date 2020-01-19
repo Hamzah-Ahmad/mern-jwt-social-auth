@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import {
   Collapse,
   Navbar,
-  NavbarBrand,
   NavbarToggler,
   Nav,
   NavItem,
@@ -11,8 +10,6 @@ import {
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Register from "./auth/Register";
-import Login from "./auth/Login";
 import Logout from "./auth/Logout";
 
 class AppNavbar extends Component {
@@ -46,16 +43,16 @@ class AppNavbar extends Component {
       </Fragment>
     );
 
-    const guestLinks = (
-      <Fragment>
-        <NavItem>
-          <Register />
-        </NavItem>
-        <NavItem>
-          <Login />
-        </NavItem>
-      </Fragment>
-    );
+    // const guestLinks = (
+    //   <Fragment>
+    //     <NavItem>
+    //       <Register />
+    //     </NavItem>
+    //     <NavItem>
+    //       <Login />
+    //     </NavItem>
+    //   </Fragment>
+    // );
 
     return (
       <div>

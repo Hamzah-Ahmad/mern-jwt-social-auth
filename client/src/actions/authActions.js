@@ -94,6 +94,33 @@ export const login = ({ email, password }) => dispatch => {
     });
 };
 
+export const fbLogin = data => dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  //const {email, name, userID} = data;
+  const body = JSON.stringify(data);
+  axios
+    .post("/api/auth/facebook", body, config)
+    .then(res => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
+      );
+      dispatch({
+        type: LOGIN_FAIL
+      });
+    });
+};
+
 //Logout user
 export const logout = () => {
   return {

@@ -1,14 +1,10 @@
 import React, { Component } from "react";
 import {
   Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
   Form,
   FormGroup,
   Label,
   Input,
-  NavLink,
   Alert,
   Container
 } from "reactstrap";
@@ -17,6 +13,7 @@ import PropTypes from "prop-types";
 import { login } from "../../actions/authActions";
 import { clearErrors } from "../../actions/errorActions";
 import { Link } from "react-router-dom";
+import FbBtn from "./FbBtn";
 
 class Login extends Component {
   state = {
@@ -116,6 +113,8 @@ class Login extends Component {
             </FormGroup>
           </Form>
           <Link to="/register">Not a member?</Link>
+          <hr />
+          <FbBtn />
         </Container>
       </div>
     );

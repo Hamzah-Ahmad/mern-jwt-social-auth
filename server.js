@@ -1,11 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const config = require("config");
+const bodyParser = require("body-parser");
+var cors = require("cors");
 
 const app = express();
-const db = config.get("mongoURI");
-app.use(express.json());
+app.use(cors());
 
+const db = config.get("mongoURI");
+app.use(bodyParser.json());
 mongoose
   .connect(db, {
     useNewUrlParser: true,
