@@ -13,7 +13,7 @@ const Landingpage = props => {
         <h3>Landing Page</h3>
         <h4>User: {props.auth.user.name}</h4>
         <h4>Id: {props.auth.user._id}</h4>
-        <h4>Email: {props.auth.user.email}</h4>
+        {/* <h4>Email: {props.auth.user.email}</h4> */}
       </Container>
     </div>
   );

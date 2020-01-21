@@ -14,13 +14,13 @@ const GoogleBtn = props => {
   };
 
   const failureResponse = () => {
-    console.log("error");
+    console.log("Error with Google Login");
   };
   return (
     <div>
       <GoogleLogin
         clientId="480164760574-1murhlrsgtbi8a5puv75cerv2fivs7uk.apps.googleusercontent.com"
-        buttonText="Login"
+        buttonText="Login with Google"
         onSuccess={responseGoogle}
         onFailure={failureResponse}
         cookiePolicy={"single_host_origin"}

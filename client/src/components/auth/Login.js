@@ -116,6 +116,7 @@ class Login extends Component {
           <Link to="/register">Not a member?</Link>
           <hr />
           <FbBtn />
+          <div style={{ paddingTop: "20px" }}></div>
           <GoogleBtn />
         </Container>
       </div>

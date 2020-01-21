@@ -9,9 +9,12 @@ const FbBtn = props => {
     const name = response.name;
     const userID = response.userID;
     const body = { email, name, userID };
-    //console.log(response);
+    if (response.name) {
+      props.fbLogin(body);
+    } else {
+      console.log("Error with FB Login");
+    }
     //axios.post("/api/auth/facebook", body).then(res => console.log(res));
-    props.fbLogin(body);
   };
 
   return (
@@ -22,6 +25,8 @@ const FbBtn = props => {
         fields="name,email,picture"
         //onClick={componentClicked}
         callback={responseFacebook}
+        cssClass="my-facebook-button-class"
+        icon="fa-facebook"
       />
     </div>
   );
