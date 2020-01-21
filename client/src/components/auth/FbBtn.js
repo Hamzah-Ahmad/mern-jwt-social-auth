@@ -20,7 +20,7 @@ const FbBtn = props => {
   return (
     <div>
       <FacebookLogin
-        appId="106641530788785"
+        appId="" //put your facebook app id here
         autoLoad={false}
         fields="name,email,picture"
         //onClick={componentClicked}
