@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Profile from "./components/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Route, Switch } from "react-router-dom";
 
@@ -22,7 +21,6 @@ function App() {
         <ProtectedRoute exact path="/" component={Landingpage} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <ProtectedRoute exact path="/profile" component={Profile} />
       </Switch>
     </div>
   );

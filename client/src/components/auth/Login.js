@@ -1,13 +1,4 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Alert,
-  Container
-} from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/authActions";
@@ -49,14 +40,6 @@ class Login extends Component {
     }
   }
 
-  toggle = () => {
-    // Clear errors
-    this.props.clearErrors();
-    this.setState({
-      modal: !this.state.modal
-    });
-  };
-
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -83,42 +66,42 @@ class Login extends Component {
           Login
         </NavLink> */}
 
-        <Container>
+        <div>
           {this.state.msg ? (
-            <Alert color="danger">{this.state.msg}</Alert>
+            <p style={{ color: "red" }}>{this.state.msg}</p>
           ) : null}
-          <Form onSubmit={this.onSubmit}>
-            <FormGroup>
-              <Label for="email">Email</Label>
-              <Input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-                className="mb-3"
-                onChange={this.onChange}
-              />
+          <form onSubmit={this.onSubmit}>
+            <label for="email">Email:</label>
+            <input
+              style={{ margin: "10px" }}
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+              className="mb-3"
+              onChange={this.onChange}
+            />
 
-              <Label for="password">Password</Label>
-              <Input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                className="mb-3"
-                onChange={this.onChange}
-              />
-              <Button color="dark" style={{ marginTop: "2rem" }} block>
-                Login
-              </Button>
-            </FormGroup>
-          </Form>
+            <label for="password">Password:</label>
+            <input
+              style={{ margin: "10px" }}
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              className="mb-3"
+              onChange={this.onChange}
+            />
+            <button style={{ marginTop: "2rem" }} block>
+              Login
+            </button>
+          </form>
           <Link to="/register">Not a member?</Link>
           <hr />
           <FbBtn />
           <div style={{ paddingTop: "20px" }}></div>
           <GoogleBtn />
-        </Container>
+        </div>
       </div>
     );
   }

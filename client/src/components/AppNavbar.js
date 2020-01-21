@@ -1,12 +1,4 @@
 import React, { Component, Fragment } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  Nav,
-  NavItem,
-  Container
-} from "reactstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -21,25 +13,21 @@ class AppNavbar extends Component {
     auth: PropTypes.object.isRequired
   };
 
-  toggle = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  };
-
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
     const authLinks = (
       <Fragment>
-        <NavItem>
-          <span className="navbar-text mr-3">
-            <strong>{user ? `${user.name}` : ""}</strong>
-          </span>
-        </NavItem>
-        <NavItem>
+        {/* We can use this.props.auth to get user info as well */}
+        {/* <span style={{ paddingLeft: "20px" }}>
+          <strong>
+            {this.props.auth.user ? `${this.props.auth.user.name}` : ""}
+          </strong>
+        </span> */}
+
+        <span style={{ paddingLeft: "20px" }}>
           <Logout />
-        </NavItem>
+        </span>
       </Fragment>
     );
 
@@ -56,28 +44,13 @@ class AppNavbar extends Component {
 
     return (
       <div>
-        <Navbar color="dark" dark expand="sm" className="mb-5">
-          <Container>
-            <Nav>
-              <Link to="/" style={{ color: "white" }}>
-                Home
-              </Link>
-            </Nav>
+        <div>
+          <Link to="/">Home</Link>
 
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-                {isAuthenticated ? authLinks : null}
-              </Nav>
-            </Collapse>
-            <Nav>
-              {/* The profile link should not be visible unless user is logged in, but I have kept it out regardless of auth state, for testing purposes */}
-              {/* <Link to="/profile" className="ml-3">
-                Profile
-              </Link> */}
-            </Nav>
-          </Container>
-        </Navbar>
+          <span className="ml-auto" navbar>
+            {isAuthenticated ? authLinks : null}
+          </span>
+        </div>
       </div>
     );
   }

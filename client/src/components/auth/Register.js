@@ -1,13 +1,4 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Alert,
-  Container
-} from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../../actions/authActions";
@@ -85,43 +76,46 @@ class Register extends Component {
           Register
         </NavLink> */}
 
-        {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
-        <Form onSubmit={this.onSubmit}>
-          <FormGroup>
-            <Label for="name">Name</Label>
-            <Input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Name"
-              className="mb-3"
-              onChange={this.onChange}
-            />
+        {this.state.msg ? (
+          <p style={{ color: "red" }}>{this.state.msg}</p>
+        ) : null}
+        <form onSubmit={this.onSubmit}>
+          <label for="name">Name:</label>
+          <input
+            style={{ margin: "10px" }}
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Name"
+            className="mb-3"
+            onChange={this.onChange}
+          />
 
-            <Label for="email">Email</Label>
-            <Input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              className="mb-3"
-              onChange={this.onChange}
-            />
+          <label for="email">Email:</label>
+          <input
+            style={{ margin: "10px" }}
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            className="mb-3"
+            onChange={this.onChange}
+          />
 
-            <Label for="password">Password</Label>
-            <Input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              className="mb-3"
-              onChange={this.onChange}
-            />
-            <Button color="dark" style={{ marginTop: "2rem" }} block>
-              Register
-            </Button>
-          </FormGroup>
-        </Form>
+          <label for="password">Password:</label>
+          <input
+            style={{ margin: "10px" }}
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            className="mb-3"
+            onChange={this.onChange}
+          />
+          <button color="dark" style={{ marginTop: "2rem" }} block>
+            Register
+          </button>
+        </form>
         <Link to="/login">Already a member?</Link>
         <hr />
         <FbBtn />
