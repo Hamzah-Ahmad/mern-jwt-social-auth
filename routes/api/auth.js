@@ -23,23 +23,7 @@ router.post("/", (req, res) => {
     //Validate password
     bcrypt.compare(password, user.password).then(isMatch => {
       if (!isMatch) return res.status(400).json({ msg: "invalid credentials" });
-
-      jwt.sign(
-        { _id: user._id },
-        config.get("jwtSecret"),
-        { expiresIn: 2629746 }, //One month in seconds
-        (err, token) => {
-          if (err) throw err;
-          res.json({
-            token,
-            user: {
-              _id: user._id,
-              name: user.name,
-              email: user.email
-            }
-          });
-        }
-      );
+      jwtFunc(user, res);
     });
   });
 });
@@ -49,54 +33,17 @@ router.post("/", (req, res) => {
 //@access Public
 router.post("/facebook", (req, res) => {
   const { name, email, userID } = req.body;
-  //console.log(userID);
   User.findOne({ fbId: userID }).then(user => {
-    // console.log("Not found");
-    // console.log(fbId);
-    // console.log(userID);
     if (!user) {
       const newUser = new User({
         name: name,
-        //email: email,
         fbId: userID
       });
       newUser.save().then(user => {
-        jwt.sign(
-          { _id: user._id },
-          config.get("jwtSecret"),
-          { expiresIn: 2629746 }, //One months in seconds
-          (err, token) => {
-            if (err) throw err;
-            res.json({
-              token,
-              user: {
-                _id: user._id,
-                name: user.name,
-                email: user.email
-              }
-            });
-          }
-        );
+        jwtFunc(user, res);
       });
     } else {
-      //console.log("Found");
-
-      jwt.sign(
-        { _id: user._id },
-        config.get("jwtSecret"),
-        { expiresIn: 2629746 }, //One months in seconds
-        (err, token) => {
-          if (err) throw err;
-          res.json({
-            token,
-            user: {
-              _id: user._id,
-              name: user.name,
-              email: user.email
-            }
-          });
-        }
-      );
+      jwtFunc(user, res);
     }
   });
 });
@@ -106,54 +53,18 @@ router.post("/facebook", (req, res) => {
 //@access Public
 router.post("/google", (req, res) => {
   const { name, email, userID } = req.body;
-  //console.log(userID);
   User.findOne({ googleId: userID }).then(user => {
-    // console.log("Not found");
-    // console.log(fbId);
-    // console.log(userID);
     if (!user) {
       const newUser = new User({
         name: name,
-        //email: email,
+
         googleId: userID
       });
       newUser.save().then(user => {
-        jwt.sign(
-          { _id: user._id },
-          config.get("jwtSecret"),
-          { expiresIn: 2629746 }, //One months in seconds
-          (err, token) => {
-            if (err) throw err;
-            res.json({
-              token,
-              user: {
-                _id: user._id,
-                name: user.name,
-                email: user.email
-              }
-            });
-          }
-        );
+        jwtFunc(user, res);
       });
     } else {
-      //console.log("Found");
-
-      jwt.sign(
-        { _id: user._id },
-        config.get("jwtSecret"),
-        { expiresIn: 2629746 }, //One months in seconds
-        (err, token) => {
-          if (err) throw err;
-          res.json({
-            token,
-            user: {
-              _id: user._id,
-              name: user.name,
-              email: user.email
-            }
-          });
-        }
-      );
+      jwtFunc(user, res);
     }
   });
 });
@@ -166,4 +77,25 @@ router.get("/user", auth, (req, res) => {
     .select("-password")
     .then(user => res.json(user));
 });
+
+//Function for jwt signing
+function jwtFunc(user, res) {
+  jwt.sign(
+    { _id: user._id },
+    config.get("jwtSecret"),
+    { expiresIn: 2629746 }, //One month in seconds
+    (err, token) => {
+      if (err) throw err;
+      res.json({
+        token,
+        user: {
+          _id: user._id,
+          name: user.name,
+          email: user.email
+        }
+      });
+    }
+  );
+}
+
 module.exports = router;
